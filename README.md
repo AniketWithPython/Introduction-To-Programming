@@ -6,4 +6,4 @@
 * Copying the above codes is fine as long as you understand the logic behind and be able to explain it if asked about.
 * The Problem Statements can be found in [Google Classroom](https://classroom.google.com/c/NjE3NDEyNDU3NzMx) (Use IITH Mail ID to access).
 
-> ©Aniket Maity 2023
+> © 2023 Aniket Maity

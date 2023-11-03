@@ -9,8 +9,8 @@
 
 void disp(int a[4][4]){     //display game board
     
-    for (size_t i = 0; i < 3; ++i){
-        for (size_t j = 0; j < 3; ++j){
+    for (size_t i = 0; i < 4; ++i){
+        for (size_t j = 0; j < 4; ++j){
            printf("%5d",a[i][j]);
             };
         puts(""); 
@@ -87,15 +87,18 @@ int win(int a[4][4]){       //to check if all cells are populated
 }
 
 int main(){
-    int a,b,n;  
+    int a,b,n,c;  
     int row, col, val;
     int board[4][4] = {0};  //4x4 matrix initialised to 0 in all cells
+    int fixed[4][2];
     srand(time(NULL));      //randomising the rand() func
     
-    for (int i = 1; i <= 4; ++i){
+    for (int i = 1; i <= 4; ++i){   //populate few cells with some values
         a = rand() % 4;     //random row
         b = rand() % 4;     //random column
         board[a][b] = i;
+        fixed[i-1][0] = a;
+        fixed[i-1][1] = b;
     };
     while(1){
 
@@ -104,7 +107,8 @@ int main(){
         puts("Make sure that no rows, columns and 2x2 grids have the same digits");
         puts("Choose a mode");
         puts("1. Start new game");
-        puts("2. exit");
+        puts("2. Solve board");
+        puts("3. Exit");
         scanf("%d", &n);
 
         switch(n){      
@@ -134,8 +138,36 @@ int main(){
                 };
 
                 break;
-
             case 2:
+                disp(board);
+                while(!(check(board))){
+
+                    for (size_t i = 0; i < 4; ++i){
+
+                        for (size_t j = 0; j < 4; ++j){
+
+                            c = 1;
+
+                            for (size_t k = 0; k < 4; ++k){
+
+                                if (i == fixed[k][0] && j == fixed[k][1]){
+                                    c = 0;
+                                }
+
+                            };
+
+                            if (c == 1){
+                                board[i][j] = rand() % 4 + 1;
+                            };
+                            
+                        }
+
+                    }
+
+                };
+                disp(board);
+
+            case 3:
                 puts("Exiting");        //exit program
                 return 0;
 
